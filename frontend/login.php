@@ -1,4 +1,4 @@
-<?php
+<?php // login
 session_start();
 include "connect.php";
 $emailErr = $passErr  = "";

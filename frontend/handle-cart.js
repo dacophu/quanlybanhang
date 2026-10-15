@@ -1,32 +1,46 @@
-const up = document.querySelector(".cart_quantity_up");
-const down = document.querySelector(".cart_quantity_down");
-const del = document.querySelector(".cart_quantity_delete");
+const up = document.querySelectorAll(".cart_quantity_up");
+const down = document.querySelectorAll(".cart_quantity_down");
+const del = document.querySelectorAll(".cart_quantity_delete");
 
-up.addEventListener("click", () => {
-	HandleQuantity(up, 0);
-});
+const UpdateSubTotal = () => {
+	const cartTotal = document.querySelectorAll(".cart_total_price");
 
-down.addEventListener("click", () => {
-	HandleQuantity(down, 1);
-});
-
-del.addEventListener("click", async () => {
-	console.log(this);
-	let id = del
-		.closest("tr")
-		.querySelector(".cart_description")
-		.querySelector("p").textContent;
-	del.closest("tr").innerHTML = "";
-	const response = await fetch("ajax-delete-product-cart.php", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ id }),
+	let subTotal = 0;
+	Object.values(cartTotal).map((item) => {
+		subTotal += parseInt(item.textContent.replace("$", ""));
 	});
 
-	const data = await response.json();
-	console.log(data);
+	document.getElementById("Sub-Total").textContent = "$" + subTotal;
+};
+UpdateSubTotal();
+
+Object.values(up).map((item) => {
+	item.addEventListener("click", () => {
+		HandleQuantity(item, 0);
+	});
+});
+Object.values(down).map((item) => {
+	item.addEventListener("click", () => {
+		HandleQuantity(item, 1);
+	});
+});
+
+Object.values(del).map((item) => {
+	item.addEventListener("click", async () => {
+		let id = item
+			.closest("tr")
+			.querySelector(".cart_description")
+			.querySelector("p").textContent;
+		item.closest("tr").innerHTML = "";
+		const response = await fetch("ajax-delete-product-cart.php", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ id }),
+		});
+		UpdateSubTotal();
+	});
 });
 
 const HandleQuantity = async (e, type) => {
@@ -65,8 +79,5 @@ const HandleQuantity = async (e, type) => {
 		},
 		body: JSON.stringify({ id, qty }),
 	});
-
-	const data = await response.json();
-
-	console.log(data);
+	UpdateSubTotal();
 };

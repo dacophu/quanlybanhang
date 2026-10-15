@@ -17,7 +17,6 @@ if ($_SESSION['cart']) {
     $cart = $_SESSION['cart'];
 }
 
-var_dump($cart);
 
 $in = false;
 foreach ($cart as $key => $value) {
@@ -32,7 +31,6 @@ if (!$in) {
     array_push($cart, $product);
 }
 
-
 $_SESSION['cart'] = $cart;
 
-var_dump($_SESSION['cart']);
+echo count($cart);

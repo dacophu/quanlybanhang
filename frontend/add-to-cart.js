@@ -1,4 +1,6 @@
 const allBtn = document.querySelectorAll(".add-to-cart");
+const cartIcon = document.getElementById("cart-icon");
+console.log(cartIcon);
 
 Object.values(allBtn).map((item) => {
 	item.addEventListener("click", async (e) => {
@@ -16,5 +18,7 @@ Object.values(allBtn).map((item) => {
 		const data = await response.json();
 
 		console.log(data);
+
+		cartIcon.textContent = data;
 	});
 });

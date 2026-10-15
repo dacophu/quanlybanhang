@@ -11,8 +11,10 @@ if ($result->num_rows > 0) {
 		$products[] = $row;
 	}
 }
-
-var_dump($products);
+$cart = [];
+if ($_SESSION['cart']) {
+	$cart = $_SESSION['cart'];
+}
 
 ?>
 <!doctype html>
@@ -161,7 +163,11 @@ var_dump($products);
 									<a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a>
 								</li>
 								<li>
-									<a href="cart.php"><i class="fa fa-shopping-cart"></i> Cart</a>
+									<a href="cart.php" id="cart-icon"><i class="fa fa-shopping-cart"></i> <?php if (count($cart) > 0) {
+																												echo count($cart);
+																											} else {
+																												echo "Cart";
+																											} ?></a>
 								</li>
 								<?php if ($data) { ?>
 									<li>

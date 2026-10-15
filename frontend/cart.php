@@ -273,7 +273,7 @@ if ($_SESSION['cart']) {
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Cart Sub Total <span>$59</span></li>
+							<li>Cart Sub Total<span id="Sub-Total">$59</span></li>
 							<li>Eco Tax <span>$2</span></li>
 							<li>Shipping Cost <span>Free</span></li>
 							<li>Total <span>$61</span></li>
@@ -445,12 +445,12 @@ if ($_SESSION['cart']) {
 	</footer><!--/Footer-->
 
 
-	<script src="handle-cart.js"></script>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.scrollUp.min.js"></script>
 	<script src="js/jquery.prettyPhoto.js"></script>
 	<script src="js/main.js"></script>
+	<script src="handle-cart.js"></script>
 </body>
 
 </html>
