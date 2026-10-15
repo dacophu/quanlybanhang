@@ -40,6 +40,10 @@ Object.values(del).map((item) => {
 			body: JSON.stringify({ id }),
 		});
 		UpdateSubTotal();
+		const data = await response.json();
+		let content = data > 0 ? data : "Cart";
+		document.getElementById("cart-icon").innerHTML =
+			`<i class="fa fa-shopping-cart"></i> ` + content;
 	});
 });
 

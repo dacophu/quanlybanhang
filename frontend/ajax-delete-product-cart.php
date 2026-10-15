@@ -16,5 +16,6 @@ foreach ($cart as $key => $value) {
     }
 }
 
-
 $_SESSION['cart'] = $cart;
+
+echo count($cart);
