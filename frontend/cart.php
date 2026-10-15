@@ -187,16 +187,19 @@ if ($_SESSION['cart']) {
 								</td>
 								<td class="cart_quantity">
 									<div class="cart_quantity_button">
-										<a class="cart_quantity_up" href=""> + </a>
+										<a class="cart_quantity_up"> + </a>
 										<input class="cart_quantity_input" type="text" name="quantity" value="<?php echo $value['qty'] ?>" autocomplete="off" size="2">
-										<a class="cart_quantity_down" href=""> - </a>
+										<a class="cart_quantity_down"> - </a>
 									</div>
 								</td>
 								<td class="cart_total">
-									<p class="cart_total_price">$59</p>
+									<p class="cart_total_price"><?php
+																$str = explode('$', $value['price']);
+																echo "$" . $str[1] * $value['qty'];
+																?></p>
 								</td>
 								<td class="cart_delete">
-									<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+									<a class="cart_quantity_delete"><i class="fa fa-times"></i></a>
 								</td>
 							</tr>
 						<?php } ?>
@@ -442,7 +445,7 @@ if ($_SESSION['cart']) {
 	</footer><!--/Footer-->
 
 
-
+	<script src="handle-cart.js"></script>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.scrollUp.min.js"></script>
